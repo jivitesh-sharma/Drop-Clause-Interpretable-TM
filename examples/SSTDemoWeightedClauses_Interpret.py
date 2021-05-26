@@ -154,9 +154,13 @@ print(ytest.shape)
 X_dev = X_text[tt:,:]
 Y_dev = y[tt:]
 
-tm1 = MultiClassTsetlinMachine(config.n_clauses_per_class*2, config.T*16, config.s, clause_drop_p=config.drop_clause, number_of_gpus=config.gpus, number_of_state_bits=config.state_bits)
+clauses = config.n_clauses_per_class*2
+s = config.s
+number_of_state_bits=config.state_bits
 
-f = open("sst_weighted_%.1f_%d_%d_%.2f_%d_aug.txt" % (s, clauses, T,  drop_clause, number_of_state_bits), "w+")
+tm1 = MultiClassTsetlinMachine(clauses, config.T*16, s, clause_drop_p=config.drop_clause, number_of_gpus=config.gpus, number_of_state_bits=number_of_state_bits)
+
+f = open("sst_weighted_%.1f_%d_%d_%.2f_%d_aug.txt" % (s, clauses, config.T,  config.drop_clause, number_of_state_bits), "w+")
 
 r_25 = 0
 r_50 = 0
